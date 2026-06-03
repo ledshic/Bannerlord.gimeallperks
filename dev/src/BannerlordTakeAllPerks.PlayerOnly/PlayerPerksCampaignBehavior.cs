@@ -40,11 +40,6 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
                 continue;
             }
 
-            if (mainHero.GetSkillValue(perk.Skill) < perk.RequiredSkillValue)
-            {
-                continue;
-            }
-
             mainHero.HeroDeveloper.AddPerk(perk);
             addedCount++;
         }
