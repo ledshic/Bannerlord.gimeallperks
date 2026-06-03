@@ -15,7 +15,7 @@ New-Item -ItemType Directory -Path $binDir -Force | Out-Null
 dotnet restore $project
 dotnet build $project -c Release --no-restore
 
-$builtDll = Join-Path $root "dev/build/bin/Win64_Shipping_Client/BannerlordTakeAllPerks.PlayerOnly.dll"
+$builtDll = Join-Path $root "build/bin/Win64_Shipping_Client/BannerlordTakeAllPerks.PlayerOnly.dll"
 if (!(Test-Path $builtDll)) {
     throw "Build output not found: $builtDll"
 }
