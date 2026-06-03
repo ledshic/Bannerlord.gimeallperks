@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Library;
@@ -8,6 +10,12 @@ namespace BannerlordTakeAllPerks.PlayerOnly;
 public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
 {
     private bool _applied;
+    private readonly HashSet<string> _ignoreEntries;
+
+    public PlayerPerksCampaignBehavior(HashSet<string> ignoreEntries)
+    {
+        _ignoreEntries = ignoreEntries;
+    }
 
     public override void RegisterEvents()
     {
@@ -33,8 +41,17 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
         }
 
         int addedCount = 0;
+        int ignoredCount = 0;
+        List<string> resolvedIgnored = new();
         foreach (PerkObject perk in PerkObject.All)
         {
+            if (PerkIgnoreConfig.IsIgnored(perk, _ignoreEntries))
+            {
+                ignoredCount++;
+                resolvedIgnored.Add(PerkIgnoreConfig.FormatPerk(perk));
+                continue;
+            }
+
             if (mainHero.GetPerkValue(perk))
             {
                 continue;
@@ -44,6 +61,12 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
             addedCount++;
         }
 
-        InformationManager.DisplayMessage(new InformationMessage($"Take All Perks: added {addedCount} perks to player."));
+        InformationManager.DisplayMessage(new InformationMessage($"Take All Perks: added {addedCount} perks to player. Ignored {ignoredCount} perk(s)."));
+
+        if (resolvedIgnored.Count > 0)
+        {
+            string ignoredText = string.Join(", ", resolvedIgnored.Distinct());
+            InformationManager.DisplayMessage(new InformationMessage($"Ignored perks: {ignoredText}"));
+        }
     }
 }

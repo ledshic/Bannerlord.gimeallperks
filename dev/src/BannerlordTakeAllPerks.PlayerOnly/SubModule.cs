@@ -12,7 +12,7 @@ public sealed class SubModule : MBSubModuleBase
 
         if (game.GameType is Campaign && gameStarter is CampaignGameStarter campaignStarter)
         {
-            campaignStarter.AddBehavior(new PlayerPerksCampaignBehavior());
+            campaignStarter.AddBehavior(new PlayerPerksCampaignBehavior(PerkIgnoreConfig.LoadIgnoreEntries()));
         }
     }
 }

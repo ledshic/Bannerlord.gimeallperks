@@ -1,0 +1,3 @@
+# Perk names or string ids to skip when auto-adding perks.
+# Default: skip Mighty Blow.
+MightyBlows

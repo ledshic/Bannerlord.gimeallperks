@@ -8,12 +8,21 @@ $root = Split-Path -Parent $PSScriptRoot
 $project = Join-Path $root "dev/src/BannerlordTakeAllPerks.PlayerOnly/BannerlordTakeAllPerks.PlayerOnly.csproj"
 $staging = Join-Path $root "out/BannerlordTakeAllPerksPlayerOnly"
 $binDir = Join-Path $staging "bin/Win64_Shipping_Client"
+$moduleDataSource = Join-Path $root "dev/module/ModuleData"
+$moduleDataDest = Join-Path $staging "ModuleData"
 
 Remove-Item -Recurse -Force $staging -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Path $binDir -Force | Out-Null
 
 dotnet restore $project
+if ($LASTEXITCODE -ne 0) {
+    throw "dotnet restore failed with exit code $LASTEXITCODE"
+}
+
 dotnet build $project -c Release --no-restore
+if ($LASTEXITCODE -ne 0) {
+    throw "dotnet build failed with exit code $LASTEXITCODE"
+}
 
 $builtDll = Join-Path $root "build/bin/Win64_Shipping_Client/BannerlordTakeAllPerks.PlayerOnly.dll"
 if (!(Test-Path $builtDll)) {
@@ -23,6 +32,11 @@ if (!(Test-Path $builtDll)) {
 $templatePath = Join-Path $root "dev/module/SubModule.xml"
 $subModuleOut = Join-Path $staging "SubModule.xml"
 (Get-Content $templatePath -Raw).Replace("__VERSION__", $Version) | Set-Content $subModuleOut
+
+if (Test-Path $moduleDataSource) {
+    Copy-Item $moduleDataSource $moduleDataDest -Recurse -Force
+}
+
 Copy-Item $builtDll $binDir -Force
 
 $zipPath = Join-Path $root "out/BannerlordTakeAllPerksPlayerOnly-$Version.zip"
