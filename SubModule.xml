@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <Id value="BannerlordTakeAllPerks" />
+  <Name value="Bannerlord: Take All Perks" />
+  <Version value="v1.3.0" />
+  <DefaultModule value="false" />
+  <ModuleCategory value="Singleplayer" />
+  <ModuleType value="Community" />
+  <SubModules>
+    <SubModule>
+      <Name value="BannerlordTakeAllPerks" />
+      <DLLName value="BannerlordTakeAllPerks.dll" />
+      <SubModuleClassType value="BannerlordTakeAllPerks.SubModule" />
+      <Tags />
+    </SubModule>
+  </SubModules>
+</Module>

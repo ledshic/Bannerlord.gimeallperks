@@ -1,0 +1,14 @@
+# Build outputs
+bin/
+obj/
+out/
+dev/build/
+
+# IDE
+.vs/
+.vscode/
+
+# User files
+*.user
+*.suo
+*.cache
