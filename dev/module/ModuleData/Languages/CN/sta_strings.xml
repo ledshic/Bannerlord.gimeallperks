@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
+  <tags>
+    <tag language="简体中文" />
+  </tags>
+  <strings>
+    <!-- Bannerlord.GimeAllPerks - 简体中文本地化 (Simplified Chinese) -->
+
+    <string id="GIME_ADDED" text="给我所有天赋（仅玩家）：为玩家添加了 {ADDED} 个天赋。忽略了 {IGNORED} 个。" />
+    <string id="GIME_IGNORED" text="已忽略的天赋：{LIST}" />
+
+  </strings>
+</base>
