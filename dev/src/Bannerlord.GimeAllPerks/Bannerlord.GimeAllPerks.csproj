@@ -3,8 +3,8 @@
     <TargetFramework>net472</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <AssemblyName>BannerlordTakeAllPerks.PlayerOnly</AssemblyName>
-    <RootNamespace>BannerlordTakeAllPerks.PlayerOnly</RootNamespace>
+    <AssemblyName>Bannerlord.GimeAllPerks</AssemblyName>
+    <RootNamespace>Bannerlord.GimeAllPerks</RootNamespace>
     <Deterministic>true</Deterministic>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\..\..\build\bin\Win64_Shipping_Client\</OutputPath>

@@ -5,11 +5,11 @@ using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Library;
 using TaleWorlds.ObjectSystem;
 
-namespace BannerlordTakeAllPerks.PlayerOnly;
+namespace Bannerlord.GimeAllPerks;
 
 public static class PerkIgnoreConfig
 {
-    private const string ModuleId = "BannerlordTakeAllPerksPlayerOnly";
+    private const string ModuleId = "Bannerlord.GimeAllPerks";
     private const string IgnoreConfigRelativePath = "ModuleData/ignore_perks.txt";
 
     public static HashSet<string> LoadIgnoreEntries()

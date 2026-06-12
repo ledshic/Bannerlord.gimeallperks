@@ -2,7 +2,7 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 
-namespace BannerlordTakeAllPerks.PlayerOnly;
+namespace Bannerlord.GimeAllPerks;
 
 public sealed class SubModule : MBSubModuleBase
 {

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <Id value="BannerlordTakeAllPerksPlayerOnly" />
-  <Name value="Bannerlord: Take All Perks (Player Only)" />
+  <Id value="Bannerlord.GimeAllPerks" />
+  <Name value="Bannerlord Gime All Perks (Player Only)" />
   <Version value="__VERSION__" />
   <DefaultModule value="false" />
   <ModuleCategory value="Singleplayer" />
   <ModuleType value="Community" />
   <SubModules>
     <SubModule>
-      <Name value="BannerlordTakeAllPerks.PlayerOnly" />
-      <DLLName value="BannerlordTakeAllPerks.PlayerOnly.dll" />
-      <SubModuleClassType value="BannerlordTakeAllPerks.PlayerOnly.SubModule" />
+      <Name value="Bannerlord.GimeAllPerks" />
+      <DLLName value="Bannerlord.GimeAllPerks.dll" />
+      <SubModuleClassType value="Bannerlord.GimeAllPerks.SubModule" />
       <Tags />
     </SubModule>
   </SubModules>

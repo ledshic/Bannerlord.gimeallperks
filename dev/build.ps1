@@ -5,8 +5,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$project = Join-Path $root "dev/src/BannerlordTakeAllPerks.PlayerOnly/BannerlordTakeAllPerks.PlayerOnly.csproj"
-$staging = Join-Path $root "out/BannerlordTakeAllPerksPlayerOnly"
+$project = Join-Path $root "dev/src/Bannerlord.GimeAllPerks/Bannerlord.GimeAllPerks.csproj"
+$staging = Join-Path $root "out/Bannerlord.GimeAllPerks"
 $binDir = Join-Path $staging "bin/Win64_Shipping_Client"
 $moduleDataSource = Join-Path $root "dev/module/ModuleData"
 $moduleDataDest = Join-Path $staging "ModuleData"
@@ -24,7 +24,7 @@ if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE"
 }
 
-$builtDll = Join-Path $root "build/bin/Win64_Shipping_Client/BannerlordTakeAllPerks.PlayerOnly.dll"
+$builtDll = Join-Path $root "build/bin/Win64_Shipping_Client/Bannerlord.GimeAllPerks.dll"
 if (!(Test-Path $builtDll)) {
     throw "Build output not found: $builtDll"
 }
@@ -39,7 +39,7 @@ if (Test-Path $moduleDataSource) {
 
 Copy-Item $builtDll $binDir -Force
 
-$zipPath = Join-Path $root "out/BannerlordTakeAllPerksPlayerOnly-$Version.zip"
+$zipPath = Join-Path $root "out/Bannerlord.GimeAllPerks-$Version.zip"
 if (Test-Path $zipPath) {
     Remove-Item $zipPath -Force
 }

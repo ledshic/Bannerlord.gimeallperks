@@ -3,9 +3,10 @@ using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.ObjectSystem;
 
-namespace BannerlordTakeAllPerks.PlayerOnly;
+namespace Bannerlord.GimeAllPerks;
 
 public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
 {
@@ -61,12 +62,17 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
             addedCount++;
         }
 
-        InformationManager.DisplayMessage(new InformationMessage($"Take All Perks: added {addedCount} perks to player. Ignored {ignoredCount} perk(s)."));
+        var addedMsg = new TextObject("{=GIME_ADDED}Gime All Perks: added {ADDED} perks to player. Ignored {IGNORED} perk(s).");
+        addedMsg.SetTextVariable("ADDED", addedCount);
+        addedMsg.SetTextVariable("IGNORED", ignoredCount);
+        InformationManager.DisplayMessage(new InformationMessage(addedMsg.ToString()));
 
         if (resolvedIgnored.Count > 0)
         {
             string ignoredText = string.Join(", ", resolvedIgnored.Distinct());
-            InformationManager.DisplayMessage(new InformationMessage($"Ignored perks: {ignoredText}"));
+            var ignoredMsg = new TextObject("{=GIME_IGNORED}Ignored perks: {LIST}");
+            ignoredMsg.SetTextVariable("LIST", ignoredText);
+            InformationManager.DisplayMessage(new InformationMessage(ignoredMsg.ToString()));
         }
     }
 }

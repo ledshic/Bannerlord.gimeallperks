@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/ModuleLanguage.xsd">
+  <tags>
+    <tag language="English" />
+  </tags>
+  <strings>
+    <!-- Bannerlord.GimeAllPerks - English Localization -->
+
+    <string id="GIME_ADDED" text="Gime All Perks: added {ADDED} perks to player. Ignored {IGNORED} perk(s)." />
+    <string id="GIME_IGNORED" text="Ignored perks: {LIST}" />
+
+  </strings>
+</base>
