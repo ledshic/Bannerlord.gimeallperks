@@ -6,6 +6,9 @@
   <DefaultModule value="false" />
   <ModuleCategory value="Singleplayer" />
   <ModuleType value="Community" />
+  <DependedModules>
+    <DependedModule Id="Bannerlord.MBOptionScreen" />
+  </DependedModules>
   <SubModules>
     <SubModule>
       <Name value="Bannerlord.GimeAllPerks" />
