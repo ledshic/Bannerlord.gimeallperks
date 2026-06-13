@@ -8,6 +8,7 @@ $root = Split-Path -Parent $PSScriptRoot
 $project = Join-Path $root "dev/src/Bannerlord.GimeAllPerks/Bannerlord.GimeAllPerks.csproj"
 $staging = Join-Path $root "out/Bannerlord.GimeAllPerks"
 $binDir = Join-Path $staging "bin/Win64_Shipping_Client"
+$projectBin = Join-Path $root "dev/src/Bannerlord.GimeAllPerks/bin/Release"
 $moduleDataSource = Join-Path $root "dev/module/ModuleData"
 $moduleDataDest = Join-Path $staging "ModuleData"
 
@@ -24,10 +25,12 @@ if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE"
 }
 
-$builtDll = Join-Path $root "build/bin/Win64_Shipping_Client/Bannerlord.GimeAllPerks.dll"
+$builtDll = Join-Path $projectBin "Bannerlord.GimeAllPerks.dll"
 if (!(Test-Path $builtDll)) {
     throw "Build output not found: $builtDll"
 }
+
+$pdbSrc = Join-Path $projectBin "Bannerlord.GimeAllPerks.pdb"
 
 $templatePath = Join-Path $root "dev/module/SubModule.xml"
 $subModuleOut = Join-Path $staging "SubModule.xml"
@@ -38,6 +41,9 @@ if (Test-Path $moduleDataSource) {
 }
 
 Copy-Item $builtDll $binDir -Force
+if (Test-Path $pdbSrc) {
+    Copy-Item $pdbSrc $binDir -Force
+}
 
 $zipPath = Join-Path $root "out/Bannerlord.GimeAllPerks-$Version.zip"
 if (Test-Path $zipPath) {
