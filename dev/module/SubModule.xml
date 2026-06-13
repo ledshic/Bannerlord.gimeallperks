@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
   <Id value="Bannerlord.GimeAllPerks" />
-  <Name value="Bannerlord Gime All Perks (Player Only)" />
+  <Name value="Bannerlord Perk Concierge" />
   <Version value="__VERSION__" />
   <DefaultModule value="false" />
   <ModuleCategory value="Singleplayer" />

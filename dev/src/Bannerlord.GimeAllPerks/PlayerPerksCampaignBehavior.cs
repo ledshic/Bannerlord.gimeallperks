@@ -10,34 +10,48 @@ namespace Bannerlord.GimeAllPerks;
 
 public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
 {
-    private bool _applied;
     private readonly HashSet<string> _ignoreEntries;
+    private static PlayerPerksCampaignBehavior? _instance;
 
     public PlayerPerksCampaignBehavior(HashSet<string> ignoreEntries)
     {
         _ignoreEntries = ignoreEntries;
+        _instance = this;
     }
 
     public override void RegisterEvents()
     {
-        CampaignEvents.OnAfterSessionLaunchedEvent.AddNonSerializedListener(this, OnAfterSessionLaunched);
     }
 
     public override void SyncData(IDataStore dataStore)
     {
     }
 
-    private void OnAfterSessionLaunched(CampaignGameStarter starter)
+    public static void ApplyPerksFromMcm()
     {
-        if (_applied)
+        if (_instance == null)
         {
+            var notReadyMsg = new TextObject("{=GIME_NOT_READY}Perk Concierge: campaign is not ready yet.");
+            InformationManager.DisplayMessage(new InformationMessage(notReadyMsg.ToString()));
             return;
         }
 
-        _applied = true;
+        _instance.ApplyPerksToMainHero();
+    }
+
+    private void ApplyPerksToMainHero()
+    {
+        _ignoreEntries.Clear();
+        foreach (string entry in PerkIgnoreConfig.LoadIgnoreEntries())
+        {
+            _ignoreEntries.Add(entry);
+        }
+
         Hero? mainHero = Hero.MainHero;
         if (mainHero == null || mainHero.HeroDeveloper == null)
         {
+            var noHeroMsg = new TextObject("{=GIME_NO_HERO}Perk Concierge: main hero is unavailable in the current context.");
+            InformationManager.DisplayMessage(new InformationMessage(noHeroMsg.ToString()));
             return;
         }
 
@@ -62,7 +76,7 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
             addedCount++;
         }
 
-        var addedMsg = new TextObject("{=GIME_ADDED}Gime All Perks: added {ADDED} perks to player. Ignored {IGNORED} perk(s).");
+        var addedMsg = new TextObject("{=GIME_ADDED}Perk Concierge: added {ADDED} perks to player. Ignored {IGNORED} perk(s).");
         addedMsg.SetTextVariable("ADDED", addedCount);
         addedMsg.SetTextVariable("IGNORED", ignoredCount);
         InformationManager.DisplayMessage(new InformationMessage(addedMsg.ToString()));

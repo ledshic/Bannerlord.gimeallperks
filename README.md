@@ -1,12 +1,13 @@
-# Bannerlord.GimeAllPerks
+# Bannerlord Perk Concierge
 
-Grants **all currently available perks** to the player hero (player-only) as soon as a campaign session is loaded. Perfect for testing, roleplay, or just having fun with every perk.
+Manually grants **all currently available perks** to the player hero (player-only) through an MCM action button. Useful for testing, roleplay, or quickly syncing perk state when needed.
 
 ## Features
 
-- Automatically unlocks every perk the player does not yet have after loading a campaign.
+- Adds an MCM page with an **Apply** button to grant all perks on demand.
 - Respects an ignore list (`ModuleData/ignore_perks.txt`) so you can skip specific perks (e.g. "Mighty Blow").
-- Simple, lightweight, no Harmony or MCM dependency.
+- No automatic perk grant on campaign load.
+- Lightweight implementation with MCM v5 support.
 - Works on new and existing saves.
 
 ## Installation
@@ -14,7 +15,8 @@ Grants **all currently available perks** to the player hero (player-only) as soo
 1. Download the latest release zip.
 2. Copy the `Bannerlord.GimeAllPerks` folder to `Modules/`.
 3. Enable it in the Launcher.
-4. Load (or start) a campaign. All perks will be granted shortly after the session begins.
+4. Load (or start) a campaign.
+5. Open MCM, find **Perk Concierge**, then click **Apply**.
 
 You will see chat messages indicating how many perks were added and which (if any) were ignored.
 
@@ -51,9 +53,11 @@ Outputs:
 
 Uses `Bannerlord.ReferenceAssemblies` (no local game install required for compilation).
 
-## Load Order
+## Dependencies & Load Order
 
-Can be placed anywhere after the core game modules. No dependencies on Harmony/MCM/BUTTER stack.
+Requires MCM v5 stack (`Harmony`, `ButterLib`, `UIExtenderEx`, `MCM`).
+
+Place this mod after core game modules and with the MCM stack enabled.
 
 ## License
 

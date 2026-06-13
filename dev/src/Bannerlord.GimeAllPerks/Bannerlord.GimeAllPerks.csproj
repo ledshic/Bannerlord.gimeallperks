@@ -12,5 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="Bannerlord.MCM" Version="5.*" IncludeAssets="compile" />
   </ItemGroup>
 </Project>
