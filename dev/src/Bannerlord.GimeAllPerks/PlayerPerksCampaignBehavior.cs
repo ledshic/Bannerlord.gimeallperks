@@ -21,6 +21,7 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
 
     public override void RegisterEvents()
     {
+        CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
     }
 
     public override void SyncData(IDataStore dataStore)
@@ -37,6 +38,17 @@ public sealed class PlayerPerksCampaignBehavior : CampaignBehaviorBase
         }
 
         _instance.ApplyPerksToMainHero();
+    }
+
+    private void OnSessionLaunched(CampaignGameStarter campaignGameStarter)
+    {
+        ModSettings? settings = ModSettings.Instance;
+        if (settings == null || !settings.AutoApplyOnLoad)
+        {
+            return;
+        }
+
+        ApplyPerksToMainHero();
     }
 
     private void ApplyPerksToMainHero()
